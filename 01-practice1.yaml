@@ -1,6 +1,12 @@
-- name: hello playbook
+- name: install and run the nginx
   hosts: web
+  becomes: yes
   tasks:
-  - name: print hello world
-    ansible.builtin.debug:
-     msg: helloworld
+   - name: install nginx
+     ansible.builtin.package:
+      name: nginx
+      state: present
+   - name: start the service 
+     ansible.builtin.service:
+      name: nginx
+      state: started
